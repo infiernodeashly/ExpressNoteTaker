@@ -3,7 +3,7 @@ const path = require("path");
 const fs = require("fs");
 
 const app = express();
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3002;
 const mainDir = path.join(__dirname, "/public");
 
 // serves the html files in our 'public' directory.
@@ -12,6 +12,30 @@ app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
 // recognizes the incoming request as a JSON object and binds middleware to application.
 app.use(express.json());
+
+
+// posts new notes to notes list.
+app.post("/api/notes", function (req, res) {
+  // call already saved notes from the database.
+  let noteSave = JSON.parse(fs.readFileSync("./db/db.json", "utf8"));
+  // define addNote for user input.
+  let addNote = req.body;
+  // creates unique ID
+  let uId = (noteSave.length).toString();
+  // creates addNote ID to equal the unique ID
+  addNote.id = uId;
+  // push the addNote to the noteSave list.
+  noteSave.push(addNote);
+
+  // write the new noteSave list into the database json object 'db.json'. (asynchronious with res.json(noteSave))
+  fs.writeFileSync("./db/db.json", JSON.stringify(noteSave));
+  // console newest note.
+  console.log("Note saved to db.json. Content: ", addNote);
+  // sends json response as the data in the noteSave list.
+  res.json(noteSave);
+})
+
+
 
 
 // gets notes from the notes.html file
@@ -37,26 +61,6 @@ app.get("*", function (req, res) {
 });
 
 
-// posts new notes to notes list.
-app.post("/api/notes", function (req, res) {
-  // call already saved notes from the database.
-  let noteSave = JSON.parse(fs.readFileSync("./db/db.json", "utf8"));
-  // define addNote for user input.
-  let addNote = req.body;
-  // creates unique ID
-  let uId = (noteSave.length).toString();
-  // creates addNote ID to equal the unique ID
-  addNote.id = uId;
-  // push the addNote to the noteSave list.
-  noteSave.push(addNote);
-
-  // write the new noteSave list into the database json object 'db.json'. (asynchronious with res.json(noteSave))
-  fs.writeFileSync("./db/db.json", JSON.stringify(noteSave));
-  // console newest note.
-  console.log("Note saved to db.json. Content: ", addNote);
-  // sends json response as the data in the noteSave list.
-  res.json(noteSave);
-})
 
 // deletes notes by id. 
 app.delete("/api/notes/:id", function (req, res) {
