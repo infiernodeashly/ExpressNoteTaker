@@ -35,6 +35,11 @@ html, body {
   background-color: rgb(245, 238, 238);
 }
 
+.note-textarea:hover, .note-title:hover{
+  opacity: 0.5;
+   
+}
+
 .note-title {
   height: 50px;
   margin-top: 13px;
@@ -81,11 +86,13 @@ html, body {
   border-right: none;
   padding: 20px;
   cursor: pointer;
+  }
 
-  
-}
+  .list-group-item:hover {
+    background-color: lightgrey;
+  }
 
-span {
+ span {
   color: black !important;
 }
 
