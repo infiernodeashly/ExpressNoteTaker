@@ -3,7 +3,7 @@ const path = require("path");
 const fs = require("fs");
 
 const app = express();
-const port = process.env.port || 3001;
+const PORT = process.env.PORT || 3001;
 const mainDir = path.join(__dirname, "/public");
 
 app.use(express.static('public'));
@@ -58,5 +58,5 @@ app.delete("/api/notes/:id", function (req, res) {
 })
 
 app.listen(port, function () {
-  console.log(`Now listening to port http://localhost:${port}. Enjoy your stay!`);
+  console.log(`Now listening to port http://localhost:${PORT}. Enjoy your stay!`);
 })
