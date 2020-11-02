@@ -37,7 +37,7 @@ N/A
 
 ## Resources
 
-https://github.com/amandalatkins/note-taker, https://github.com/DreissenZulu/Express-Note-Taker, https://github.com/pmscad/NoteTaker
+https://github.com/amandalatkins/note-taker, https://github.com/DreissenZulu/Express-Note-Taker, https://github.com/pmscad/NoteTaker, https://expressjs.com/en/api.html, https://modernweb.com/the-basics-of-express-routes/
 
 ## Tests
 
