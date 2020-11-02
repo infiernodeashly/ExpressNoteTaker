@@ -1,5 +1,7 @@
 #Express Note Taker
 
+Repository: https://github.com/infiernodeashly/ExpressNoteTaker
+Heroku App Link: https://arcane-waters-35521.herokuapp.com/
   
 ## Description 
         
